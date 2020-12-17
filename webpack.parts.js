@@ -16,3 +16,9 @@ exports.devServer = () => ({
 exports.page = ({ title }) => ({
   plugins: [new MiniHtmlWebpackPlugin({ context: { title } })],
 });
+
+exports.loadCss = () => ({
+  module: {
+    rules: [{ test: /\.css$/, use: ["style-loader", "css-loader"] }],
+  },
+});
