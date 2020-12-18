@@ -3,4 +3,7 @@
 @tailwind utilities;
 body {
   background: black;
+  background-image: url("./assets/images/some.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
 }

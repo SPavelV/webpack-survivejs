@@ -5,8 +5,14 @@ const parts = require("./webpack.parts");
 const cssLoaders = [parts.autoprefix(), parts.tailvind()];
 const commonConfig = merge([
   { entry: ["./src"] },
+  {
+    output: {
+      publicPath: "/",
+    },
+  },
   parts.page({ title: "Demo" }),
   parts.extractCSS({ loaders: cssLoaders }),
+  parts.loadImages({ limit: 15000 }),
 ]);
 
 const productionConfig = merge([parts.eliminateUnusedCSS()]);
