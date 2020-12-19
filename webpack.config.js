@@ -13,6 +13,7 @@ const commonConfig = merge([
   parts.page({ title: "Demo" }),
   parts.extractCSS({ loaders: cssLoaders }),
   parts.loadImages({ limit: 15000 }),
+  parts.loadJavaScript(),
 ]);
 
 const productionConfig = merge([parts.eliminateUnusedCSS()]);
@@ -26,7 +27,7 @@ const getConfig = (mode) => {
   process.env.NODE_ENV = mode;
   switch (mode) {
     case "production":
-      return merge(commonConfig, productionConfig, { mode });
+      return merge(commonConfig, productionConfig, { mode: "none" });
     case "development":
       return merge(commonConfig, developmentConfig, { mode });
     default:
