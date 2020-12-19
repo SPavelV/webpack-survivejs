@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require("path");
 const glob = require("glob");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
+const APP_SOURCE = path.join(__dirname, "src");
 
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
@@ -92,13 +93,23 @@ exports.loadImages = ({ limit } = {}) => ({
   },
 });
 
-const APP_SOURCE = path.join(__dirname, "src");
-
 exports.loadJavaScript = () => ({
   module: {
     rules: [
       // Consider extracting include as a parameter
       { test: /\.js$/, include: APP_SOURCE, use: "babel-loader" },
+    ],
+  },
+});
+
+exports.loadTypeScript = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        include: APP_SOURCE,
+        use: ["babel-loader", "ts-loader"],
+      },
     ],
   },
 });

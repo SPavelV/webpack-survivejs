@@ -10,10 +10,16 @@ const commonConfig = merge([
       publicPath: "/",
     },
   },
+  {
+    resolve: {
+      extensions: [".ts", ".js"],
+    },
+  },
   parts.page({ title: "Demo" }),
   parts.extractCSS({ loaders: cssLoaders }),
   parts.loadImages({ limit: 15000 }),
   parts.loadJavaScript(),
+  parts.loadTypeScript(),
 ]);
 
 const productionConfig = merge([parts.eliminateUnusedCSS()]);
