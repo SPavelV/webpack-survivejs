@@ -113,3 +113,5 @@ exports.loadTypeScript = () => ({
     ],
   },
 });
+
+exports.generateSourceMaps = ({ type }) => ({ devtool: type });
