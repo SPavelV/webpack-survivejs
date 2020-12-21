@@ -52,6 +52,8 @@ const productionConfig = merge([
       runtimeChunk: { name: "runtime" },
     },
   },
+
+  { recordsPath: path.join(__dirname, "records.json") },
 ]);
 
 const developmentConfig = merge([
