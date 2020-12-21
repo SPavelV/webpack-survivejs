@@ -25,6 +25,7 @@ const commonConfig = merge([
 const productionConfig = merge([
   parts.eliminateUnusedCSS(),
   parts.generateSourceMaps({ type: "source-map" }),
+  { optimization: { splitChunks: { chunks: "all" } } },
 ]);
 
 const developmentConfig = merge([
