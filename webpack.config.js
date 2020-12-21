@@ -10,8 +10,8 @@ const commonConfig = merge([
     output: {
       publicPath: "/",
       path: path.resolve(process.cwd(), "dist"),
-      chunkFilename: "[name].[contenthash].js",
-      filename: "[name].[contenthash].js",
+      filename: "js/bundle.[name].[contenthash].js",
+      chunkFilename: "js/chunk.[name].[contenthash].js",
       assetModuleFilename: "[name].[contenthash][ext][query]",
     },
   },
@@ -38,6 +38,7 @@ const productionConfig = merge([
   {
     optimization: {
       splitChunks: {
+        chunks: "all",
         // css/mini-extra is injected by mini-css-extract-plugin
         minSize: { javascript: 2000, "styles/mini-extra": 10000 },
         cacheGroups: {
@@ -48,6 +49,7 @@ const productionConfig = merge([
           },
         },
       },
+      runtimeChunk: { name: "runtime" },
     },
   },
 ]);

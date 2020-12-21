@@ -4,7 +4,7 @@ export default (text = HELLO) => {
   element.innerHTML = text;
 
   element.onclick = () => {
-    import("./lazy")
+    import(/* webpackChunkName: "dynamic-import-text" */ "./lazy")
       .then((lazy) => {
         element.textContent = lazy.default;
       })
