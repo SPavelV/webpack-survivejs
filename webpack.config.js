@@ -23,6 +23,7 @@ const commonConfig = merge([
   parts.loadJavaScript(),
   parts.loadTypeScript(),
   parts.clean(),
+  parts.attachRevision(),
 ]);
 
 const productionConfig = merge([
@@ -54,7 +55,7 @@ const getConfig = (mode) => {
   process.env.NODE_ENV = mode;
   switch (mode) {
     case "production":
-      return merge(commonConfig, productionConfig, { mode: "none" });
+      return merge(commonConfig, productionConfig, { mode });
     case "development":
       return merge(commonConfig, developmentConfig, { mode });
     default:
