@@ -25,7 +25,21 @@ const commonConfig = merge([
 const productionConfig = merge([
   parts.eliminateUnusedCSS(),
   parts.generateSourceMaps({ type: "source-map" }),
-  { optimization: { splitChunks: { chunks: "all" } } },
+  {
+    optimization: {
+      splitChunks: {
+        // css/mini-extra is injected by mini-css-extract-plugin
+        minSize: { javascript: 2000, "styles/mini-extra": 10000 },
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "initial",
+          },
+        },
+      },
+    },
+  },
 ]);
 
 const developmentConfig = merge([
