@@ -25,6 +25,7 @@ const commonConfig = merge([
   parts.clean(),
   parts.attachRevision(),
   parts.minifyJavaScript(),
+  parts.minifyCSS({ options: { preset: ["default"] } }),
 ]);
 
 const productionConfig = merge([

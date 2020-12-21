@@ -8,6 +8,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
 const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const APP_SOURCE = path.join(__dirname, "src");
 const ALL_FILES = glob.sync(path.join(__dirname, "src/*.js"));
 
@@ -131,4 +132,10 @@ exports.attachRevision = () => ({
 
 exports.minifyJavaScript = () => ({
   optimization: { minimizer: [new TerserPlugin()] },
+});
+
+exports.minifyCSS = ({ options }) => ({
+  optimization: {
+    minimizer: [new CssMinimizerPlugin({ minimizerOptions: options })],
+  },
 });
