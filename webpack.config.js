@@ -24,6 +24,7 @@ const commonConfig = merge([
   parts.loadTypeScript(),
   parts.clean(),
   parts.attachRevision(),
+  parts.minifyJavaScript(),
 ]);
 
 const productionConfig = merge([
