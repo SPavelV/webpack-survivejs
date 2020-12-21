@@ -1,6 +1,7 @@
 const { mode } = require("webpack-nano/argv");
 const { merge } = require("webpack-merge");
 const parts = require("./webpack.parts");
+const path = require("path");
 
 const cssLoaders = [parts.autoprefix(), parts.tailvind()];
 const commonConfig = merge([
@@ -8,6 +9,7 @@ const commonConfig = merge([
   {
     output: {
       publicPath: "/",
+      path: path.resolve(process.cwd(), "dist"),
     },
   },
   {
@@ -20,6 +22,7 @@ const commonConfig = merge([
   parts.loadImages({ limit: 15000 }),
   parts.loadJavaScript(),
   parts.loadTypeScript(),
+  parts.clean(),
 ]);
 
 const productionConfig = merge([

@@ -1,6 +1,7 @@
 const { WebpackPluginServe } = require("webpack-plugin-serve");
 const { MiniHtmlWebpackPlugin } = require("mini-html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const path = require("path");
 const glob = require("glob");
 const PurgeCSSPlugin = require("purgecss-webpack-plugin");
@@ -115,3 +116,5 @@ exports.loadTypeScript = () => ({
 });
 
 exports.generateSourceMaps = ({ type }) => ({ devtool: type });
+
+exports.clean = () => ({ plugins: [new CleanWebpackPlugin()] });
